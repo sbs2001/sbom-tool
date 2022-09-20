@@ -9,4 +9,6 @@ WORKDIR /app/src/Microsoft.Sbom.Tool
 COPY --from=build-env /app/src/Microsoft.Sbom.Tool/output .
 
 RUN apt update -y && apt install -y python golang nuget npm cargo ruby maven
+RUN useradd -ms /bin/bash  sbom
+USER sbom
 ENTRYPOINT ["./Microsoft.Sbom.Tool"]
